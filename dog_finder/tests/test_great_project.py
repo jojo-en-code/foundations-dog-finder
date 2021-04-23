@@ -1,7 +1,7 @@
 from dog_finder.website import app
 
 
-def test_index():
+def test_home():
     # create a version of our website that we can use for testing
     with app.test_client() as test_client:
         # mimic a browser: 'GET /', as if you visit the site

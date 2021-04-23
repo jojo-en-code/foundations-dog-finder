@@ -1,5 +1,8 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* margin-left: 2rem; */
+}
+main {
     margin-left: 2rem;
 }
 
