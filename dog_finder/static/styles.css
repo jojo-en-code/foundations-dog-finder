@@ -12,11 +12,15 @@ main {
     margin-bottom: 1rem;
 }
 
-footer {
+/* footer {
     margin-top: 5rem;
-    text-align: center;
-}
-
+    text-align: center;s
+} */
+/* footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+} */
 .button{
     color: antiquewhite;
     background-color:firebrick;

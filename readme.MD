@@ -40,10 +40,11 @@ To Lint your app:
 
 # Installation Instructions
 This will be a quick overview of steps for how to use this template on your own project, but will not be a line-for-line cookbook. You can find deeper explanations, tips, and instructions in the [Foundation's main class repository](https://github.com/DrAdamRoe/foundations-sample-website), used for homework assignments. 
+- pip install flask-login !!!!
 
 ## Before you start... 
 You should have:
-- Python 3.8.x installed on your computer 
+- Python 3.8.x installed on your computer
 - Visual Studio Code (or another IDE of your choosing) installed on your computer 
 - A GitHub account 
 - A Google Cloud Platform account (with class credits)

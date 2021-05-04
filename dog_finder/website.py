@@ -1,9 +1,19 @@
 from flask import Flask
 from flask import render_template, request, flash
+from flask_sqlalchemy import SQLAlchemy
+from os import path
+
+# from dog_finder.models import User
+
+# global db
+# db = SQLAlchemy()
+# DB_NAME = "database.db"
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dqddececcad efde'
-
+# app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{DB_NAME}'
+# db.init_app(app)
 # configure Flask using environment variables
 app.config.from_pyfile("config.py")
 
@@ -41,6 +51,21 @@ def signup():
         
 
     return render_template('signup.html', page_title="Sign Up")
+    
+# def create_database(app):
+#     if not path.exists('dog_finder/' + DB_NAME):
+#         db.create_all(app=app)
+#         # user = User(db)
+#         print('created Database')
+
+
+# create_database(app)
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port=8080, debug=True)
+
