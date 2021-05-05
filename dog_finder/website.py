@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
-global db
+# global db
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
