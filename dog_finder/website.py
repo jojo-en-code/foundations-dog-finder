@@ -24,6 +24,10 @@ app.config.from_pyfile("config.py")
 def home():
     return render_template('home.html', page_title="Danas Dog Finder")
 
+@app.route('/questionnair', methods=['GET', 'POST'])
+def questionnair():
+    return render_template('questionnair.html', page_title="Questionnair")
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('login.html', page_title="Login")

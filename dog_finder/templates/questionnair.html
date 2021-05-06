@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title> {{ page_title }}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+    <body>
+        <div class ="container">
+            <head>
+                <h2>Answer the following questions and submit when your done </h2>
+            </head>
+
+            <form class="questions" id="q1"method="POST">
+                <div id="wrapper">
+                    <label for="first question"><h3>Do you like dogs?</h3></label>
+                <p>
+                <input type="radio" name="yes_no" value=1 checked>Yes</input>
+                </p>
+                <p>
+                <input type="radio" name="yes_no">No</input>
+                </p>
+                <button id="submit">Next</button>
+                </div>
+            </form>
+
+            <form class="questions" id="q2" method="POST">
+                <div id="wrapper">
+                    <label for="first question"><h3>Do you like dogs?</h3></label>
+                <p>
+                <input type="radio" name="yes_no" value=1 checked>Yes</input>
+                </p>
+                <p>
+                <input type="radio" name="yes_no">No</input>
+                </p>
+                <button id="submit">Next</button>
+                </div>
+            </form>
+            
+            <form class="questions" id="q3" method="POST">
+                <div id="wrapper">
+                    <label for="first question"><h3>Do you like dogs?</h3></label>
+                <p>
+                <input type="radio" name="yes_no" value=1 checked>Yes</input>
+                </p>
+                <p>
+                <input type="radio" name="yes_no">No</input>
+                </p>
+                <button id="submit">Next</button>
+                </div>
+            </form>
+
+            <form class="questions" id="q4" method="POST">
+                <div id="wrapper">
+                    <label for="first question"><h3>Do you like dogs?</h3></label>
+                <p>
+                <input type="radio" name="yes_no" value=1 checked>Yes</input>
+                </p>
+                <p>
+                <input type="radio" name="yes_no">No</input>
+                </p>
+                <button id="submit">Submit</button>
+                </div>
+            </form>
+         
+        </div>
+            
+        
+    </body>
+</html>
