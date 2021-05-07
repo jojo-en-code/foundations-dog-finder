@@ -11,12 +11,13 @@
         <h1 class="text-center">Danas Breed Finder</h1>
     </div>
     
-    <img src="/Users/joel_ena/foundationsproject/dog project/dog_finder/templates/pictures/hero_img.png" class="img-thumbnail" alt="cute dog">
+    <!-- <img src="Users/joel_ena/foundationsproject/dog project/dog_finder/templates/hero_img.png"> -->
+    <img src="{{url_for('static', filename='hero_img.png')}}">
     <div class="px-4 py-5 my-5 text-center">
         <p> Lets see which breed fits best to you </p>
         <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" onclick="warnUser()"> Try it Out. </button>  
     </div>
-      
+       
 
     
    
