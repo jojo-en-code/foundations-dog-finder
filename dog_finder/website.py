@@ -26,6 +26,16 @@ def home():
 
 @app.route('/questionnair', methods=['GET', 'POST'])
 def questionnair():
+    if request.method == "POST":
+       # getting input from form for first question
+       score = request.json["score"]
+       print(score)
+       
+        # getting input from form for second question
+    #    second_question = request.form.get("yes_no")
+    #    third_question = request.form.get("yes_no")
+    #    fourth_question = request.form.get("yes_no") 
+       
     return render_template('questionnair.html', page_title="Questionnair")
 
 @app.route('/login', methods=['GET', 'POST'])
