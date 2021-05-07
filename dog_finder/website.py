@@ -2,18 +2,23 @@ from flask import Flask
 from flask import render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+import pymysql
+# from mysql import mysql
+# import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
 
 db = SQLAlchemy()
-DB_NAME = "database.db"
+DB_NAME = "dbschema.db"
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dqddececcad efde'
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' 
+# app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' 
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/[{DB_Name}]'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/dbschema'
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db.init_app(app)
 # configure Flask using environment variables
@@ -64,6 +69,7 @@ def signup():
             flash("Passwords dont match", category='error')
         else:
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
+            # new_user = User(email=email, first_name=first_name, password=password1)
             db.session.add(new_user)
             db.session.commit()
             flash("Account was created", category='success')
@@ -72,15 +78,23 @@ def signup():
 
     return render_template('signup.html', page_title="Sign Up")
     
-def create_database(app):
-    if not path.exists('dog_finder/' + DB_NAME):
+# def create_database(app):
+#     if not path.exists('dog_finder/' + DB_NAME):
         
-        db.create_all(app=app)
-        # User = User(db)
-        print('created Database')
+#         db.create_all(app=app)
+#         # User = User(db)
+#         print('created Database')
 
-from dog_finder.models import db
-create_database(app)
+# from dog_finder.models import db
+# create_database(app)
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="root",
+#   password="password"
+# )
+
+# print(mydb)
+
 
 
 
