@@ -1,17 +1,17 @@
 from flask import Flask
 from flask import render_template, request, flash, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
 from os import path
 import pymysql
 # from mysql import mysql
 # import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager
+from flask_login import login_user, login_required, logout_user, current_user
+from dog_finder.models import db, User, Dog_breed
+from dog_finder.score_analyzer import calculate_range
 
 
-
-
-db = SQLAlchemy()
-DB_NAME = "dbschema.db"
+# DB_NAME = "dbschema.db"
 
 
 app = Flask(__name__)
@@ -30,6 +30,7 @@ def home():
     return render_template('home.html', page_title="Danas Dog Finder")
 
 @app.route('/questionnair', methods=['GET', 'POST'])
+@login_required
 def questionnair():
     if request.method == "POST":
        # getting input from form for first question
@@ -41,15 +42,44 @@ def questionnair():
     #    third_question = request.form.get("yes_no")
     #    fourth_question = request.form.get("yes_no") 
        
-    return render_template('questionnair.html', page_title="Questionnair")
+    return render_template('questionnair.html', user=current_user, page_title="Questionnair")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html', page_title="Login")
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-@app.route('/logout', methods=['GET', 'POST'])
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully!', category='success')
+                login_user(user, remember=True)
+                return redirect(url_for('home'))
+            else:
+                flash('Incorrect password, try again.', category='error')
+        else:
+            flash('Email does not exist.', category='error')
+
+    return render_template("login.html", user=current_user)
+
+    return render_template('login.html', user=current_user, page_title="Login")
+
+@app.route('/logout')
+@login_required
 def logout():
-    return render_template('logout.html', page_title="Logout")
+    logout_user()
+    return redirect(url_for('login'))
+
+
+
+@app.route('/testbreed')
+def test_breed():
+    dog_breed = Dog_breed()
+    dog_breed_list= dog_breed.query.all()
+    calculate_range(dog_breed_list)
+    return dog_breed_list
+    
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -59,7 +89,10 @@ def signup():
         password1= request.form.get('password1')
         password2= request.form.get('password2')
 
-        if len(email) < 4:
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash('Email already exists.', category='error')
+        elif len(email) < 4:
             flash("Email must be greater than 4 characters", category='error')
         elif len(first_name) < 2:
             flash("First Name must be greater than 2 characters", category='error')
@@ -72,30 +105,20 @@ def signup():
             # new_user = User(email=email, first_name=first_name, password=password1)
             db.session.add(new_user)
             db.session.commit()
+            login_user(new_user, remember=True)
             flash("Account was created", category='success')
             return redirect(url_for('home'))
     
 
-    return render_template('signup.html', page_title="Sign Up")
-    
-# def create_database(app):
-#     if not path.exists('dog_finder/' + DB_NAME):
-        
-#         db.create_all(app=app)
-#         # User = User(db)
-#         print('created Database')
+    return render_template('signup.html', user=current_user, page_title="Sign Up")
 
-# from dog_finder.models import db
-# create_database(app)
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="root",
-#   password="password"
-# )
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
 
-# print(mydb)
-
-
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 
 
@@ -103,5 +126,3 @@ def signup():
 
 if __name__ == "__main__":
     app.run(host="localhost", port=8080, debug=True)
-
-from dog_finder.models import User
