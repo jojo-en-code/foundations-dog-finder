@@ -61,8 +61,6 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return render_template("login.html", user=current_user)
-
     return render_template('login.html', user=current_user, page_title="Login")
 
 @app.route('/logout')
@@ -71,7 +69,11 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-
+# @app.route('/result', methods=['GET', 'POST'])
+# @login_required
+# def result():
+#     score = request.json["score"]
+#     return render_template('result.html', user=current_user, page_title="Result", user_score=score)
 
 @app.route('/testbreed')
 def test_breed():

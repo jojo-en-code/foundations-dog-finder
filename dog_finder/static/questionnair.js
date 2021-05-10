@@ -115,12 +115,15 @@ xhr.send(JSON.stringify({
         }
     }
     function addScore4(){
+
         if($('#q4 #radio_yes').is(':checked')){
             score += parseInt($('#q4 #radio_yes').val()) 
         }
         else{
             score += parseInt($('#q4 #radio_no').val())
         }
+        const pScore = document.getElementById('score')
+        pScore.innerHTML = `Your Total: ${score}`
     }
     
    

@@ -96,11 +96,18 @@ $(document).ready(function(){
                 <p>
                 <input type="radio" name="yes_no_radio" id="radio_no" value=0>No</input>
                 </p>
-                <button id="submit">Submit</button>
+                <a href="/result"><button id="submit">Submit</button></a>
                 </div>
             </form>
-         
-        </div>
+            
+        </div class="container">
+        <!-- <div>
+            <h1>Your score</h1>
+            <br>
+            <p>{{ score }}</p>
+        </div> -->
+        <h1 id="score" ></h1>
+        
         <br>
     <footer style="text-align: center; color: crimson; background-color: lightslategray;">
         <h2>4 Questions in total</h2>
