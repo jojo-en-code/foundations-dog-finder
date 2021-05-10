@@ -48,14 +48,14 @@ $(document).ready(function(){
                 <h2>Answer the following questions and submit when your done </h2>
             </head>
 
-            <form class="questions" id="q1"method="POST">
+            <form class="questions" id="q1" method="POST">
                 <div id="wrapper">
-                    <label for="first_question"><h3>Do you like dogs1?</h3></label>
+                    <label for="first_question"><h3>Do you like dogs 1?</h3></label>
                 <p>
                 <input type="radio" name="yes_no_radio" id="radio_yes" value=25 >Yes</input>
                 </p>
                 <p>
-                <input type="radio" name="yes_no_radio" id="radio_no "value=0>No</input>
+                <input type="radio" name="yes_no_radio" id="radio_no" value=0>No</input>
                 </p>
                 <button id="submit">Next</button>
                 </div>
@@ -106,7 +106,8 @@ $(document).ready(function(){
             <br>
             <p>{{ score }}</p>
         </div> -->
-        <h1 id="score" ></h1>
+        <div id="score"></div>
+        <div id="score_breeds"></div>
         
         <br>
     <footer style="text-align: center; color: crimson; background-color: lightslategray;">

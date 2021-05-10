@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, jsonify
 from os import path
 import pymysql
 # from mysql import mysql
@@ -33,16 +33,18 @@ def home():
 @login_required
 def questionnair():
     if request.method == "POST":
-       # getting input from form for first question
-       score = request.json["score"]
-       print(score)
-       
-        # getting input from form for second question
-    #    second_question = request.form.get("yes_no")
-    #    third_question = request.form.get("yes_no")
-    #    fourth_question = request.form.get("yes_no") 
+        # getting input from form for first question
+        score = request.json["score"]
+
+        dog_breed = Dog_breed()
+        dog_breed_list= dog_breed.query.all()
+        result = calculate_range(dog_breed_list, score)
+        return jsonify({"score":score,"result": result})
        
     return render_template('questionnair.html', user=current_user, page_title="Questionnair")
+
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -75,13 +77,7 @@ def logout():
 #     score = request.json["score"]
 #     return render_template('result.html', user=current_user, page_title="Result", user_score=score)
 
-@app.route('/testbreed')
-def test_breed():
-    dog_breed = Dog_breed()
-    dog_breed_list= dog_breed.query.all()
-    calculate_range(dog_breed_list)
-    return dog_breed_list
-    
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -113,6 +109,21 @@ def signup():
     
 
     return render_template('signup.html', user=current_user, page_title="Sign Up")
+
+
+@app.route('/score_comp', methods=["POST"])
+def score_comp():
+    # user_score = request.form.get("student_id")
+    # cur = mysql.connection.cursor()
+    # cur.execute("DELETE FROM students WHERE student_id = %s", (student_id,)
+    # conn.commit()
+    # score = request.args.get('score', 0, type=json)
+    return jsonify(score)
+    return string.Format("your score: " + score)
+    print(score)
+    return jsonify(status="success")
+    # return render_template('questionnair.html', user=current_user)    
+
 
 login_manager = LoginManager()
 login_manager.login_view = 'login'

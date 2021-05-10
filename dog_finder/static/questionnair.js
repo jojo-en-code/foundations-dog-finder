@@ -74,11 +74,21 @@ $(document).ready(function(){
         
 
         var xhr = new XMLHttpRequest();
-xhr.open("POST", "/questionnair", true);
-xhr.setRequestHeader('Content-Type', 'application/json');
-xhr.send(JSON.stringify({
-    score:score
-})); 
+        xhr.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText)
+            document.getElementById('score').innerHTML = data.score;
+            document.getElementById('score_breeds').innerHTML = data.result;
+          } else {
+            document.getElementById('score').innerHTML = "Something went wrong.";
+          }
+        }
+        xhr.open("POST", "/questionnair", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            score:score
+        })); 
 
 
         return false
@@ -122,8 +132,7 @@ xhr.send(JSON.stringify({
         else{
             score += parseInt($('#q4 #radio_no').val())
         }
-        const pScore = document.getElementById('score')
-        pScore.innerHTML = `Your Total: ${score}`
+        
     }
     
    
