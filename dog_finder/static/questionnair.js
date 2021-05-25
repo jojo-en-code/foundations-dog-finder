@@ -11,12 +11,7 @@ $(document).ready(function(){
     $('#q1 #submit').click(function(){
         const isChecked  = checkCheckBoxes()
         if(!isChecked) return false
-        // if($('#q1 #radio_yes').is(':checked')){
-        //     score += parseInt($('#q1 #radio_yes').val()) 
-        // }
-        // else{
-        //     score += parseInt($('#q1 #radio_no').val())
-        // }
+        
         addScore1()
         console.log(score)
 
@@ -28,13 +23,7 @@ $(document).ready(function(){
     $('#q2 #submit').click(function(){
         const isChecked  = checkCheckBoxes()
         if(!isChecked) return false
-        // if($('#q2 #radio_yes').is(':checked')){
-        //     score += parseInt($('#q2 #radio_yes').val()) 
-        // }
-        // else{
-        //     score += parseInt($('#q2 #radio_no').val())
-        // console.log(score)
-        // }
+        
         addScore2()
         console.log(score)
 
@@ -46,12 +35,7 @@ $(document).ready(function(){
     $('#q3 #submit').click(function(){
         const isChecked  = checkCheckBoxes()
         if(!isChecked) return false
-        // if($('#q3 #radio_yes').is(':checked')){
-        //     score += parseInt($('#q3 #radio_yes').val()) 
-        // }
-        // else{
-        //     score += parseInt($('#q3 #radio_no').val())
-        // }
+        
         addScore3()
         console.log(score)
 
@@ -62,12 +46,7 @@ $(document).ready(function(){
     $('#q4 #submit').click(function(){
         const isChecked  = checkCheckBoxes()
         if(!isChecked) return false
-        // if($('#q4 #radio_yes').is(':checked')){
-        //     score += parseInt($('#q4 #radio_yes').val()) 
-        // }
-        // else{
-        //     score += parseInt($('#q4 #radio_no').val())
-        // }
+        
         addScore4()
         console.log(score)
         $('.questions').hide();

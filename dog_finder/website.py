@@ -2,8 +2,6 @@ from flask import Flask
 from flask import render_template, request, flash, redirect, url_for, jsonify
 from os import path
 import pymysql
-# from mysql import mysql
-# import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager
 from flask_login import login_user, login_required, logout_user, current_user
@@ -11,17 +9,13 @@ from dog_finder.models import db, User, Dog_breed
 from dog_finder.score_analyzer import calculate_range
 
 
-# DB_NAME = "dbschema.db"
+
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dqddececcad efde'
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/[{DB_Name}]'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/dbschema'
-# app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db.init_app(app)
-# configure Flask using environment variables
 app.config.from_pyfile("config.py")
 
 
@@ -71,11 +65,6 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-# @app.route('/result', methods=['GET', 'POST'])
-# @login_required
-# def result():
-#     score = request.json["score"]
-#     return render_template('result.html', user=current_user, page_title="Result", user_score=score)
 
 
 
@@ -111,18 +100,18 @@ def signup():
     return render_template('signup.html', user=current_user, page_title="Sign Up")
 
 
-@app.route('/score_comp', methods=["POST"])
-def score_comp():
-    # user_score = request.form.get("student_id")
-    # cur = mysql.connection.cursor()
-    # cur.execute("DELETE FROM students WHERE student_id = %s", (student_id,)
-    # conn.commit()
-    # score = request.args.get('score', 0, type=json)
-    return jsonify(score)
-    return string.Format("your score: " + score)
-    print(score)
-    return jsonify(status="success")
-    # return render_template('questionnair.html', user=current_user)    
+# @app.route('/score_comp', methods=["POST"])
+# def score_comp():
+#     # user_score = request.form.get("student_id")
+#     # cur = mysql.connection.cursor()
+#     # cur.execute("DELETE FROM students WHERE student_id = %s", (student_id,)
+#     # conn.commit()
+#     # score = request.args.get('score', 0, type=json)
+#     return jsonify(score)
+#     return string.Format("your score: " + score)
+#     print(score)
+#     return jsonify(status="success")
+#     # return render_template('questionnair.html', user=current_user)    
 
 
 login_manager = LoginManager()
